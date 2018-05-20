@@ -1,0 +1,902 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://2k_stars_milky_way.jpg" type="Texture" id=1]
+[ext_resource path="res://2k_earth_daymap.jpg" type="Texture" id=2]
+[ext_resource path="res://2k_mars.jpg" type="Texture" id=3]
+[ext_resource path="res://Camera.gd" type="Script" id=4]
+
+[sub_resource type="PanoramaSky" id=1]
+
+radiance_size = 4
+panorama = ExtResource( 1 )
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="Environment" id=2]
+
+background_mode = 2
+background_sky = SubResource( 1 )
+background_sky_custom_fov = 0.0
+background_color = Color( 0, 0, 0, 1 )
+background_energy = 0.01
+background_canvas_max_layer = 0
+ambient_light_color = Color( 0, 0, 0, 1 )
+ambient_light_energy = 1.0
+ambient_light_sky_contribution = 1.0
+fog_enabled = false
+fog_color = Color( 0.5, 0.6, 0.7, 1 )
+fog_sun_color = Color( 1, 0.9, 0.7, 1 )
+fog_sun_amount = 0.0
+fog_depth_enabled = true
+fog_depth_begin = 10.0
+fog_depth_curve = 1.0
+fog_transmit_enabled = false
+fog_transmit_curve = 1.0
+fog_height_enabled = false
+fog_height_min = 0.0
+fog_height_max = 100.0
+fog_height_curve = 1.0
+tonemap_mode = 0
+tonemap_exposure = 1.0
+tonemap_white = 1.0
+auto_exposure_enabled = true
+auto_exposure_scale = 0.3
+auto_exposure_min_luma = 0.01
+auto_exposure_max_luma = 16.0
+auto_exposure_speed = 1.0
+ss_reflections_enabled = false
+ss_reflections_max_steps = 64
+ss_reflections_fade_in = 8.84342e-06
+ss_reflections_fade_out = 0.00257716
+ss_reflections_depth_tolerance = 0.2
+ss_reflections_roughness = true
+ssao_enabled = false
+ssao_radius = 1.0
+ssao_intensity = 1.0
+ssao_radius2 = 0.0
+ssao_intensity2 = 1.0
+ssao_bias = 0.01
+ssao_light_affect = 0.0
+ssao_color = Color( 0, 0, 0, 1 )
+ssao_quality = 0
+ssao_blur = 3
+ssao_edge_sharpness = 4.0
+dof_blur_far_enabled = false
+dof_blur_far_distance = 10.0
+dof_blur_far_transition = 5.0
+dof_blur_far_amount = 0.1
+dof_blur_far_quality = 1
+dof_blur_near_enabled = false
+dof_blur_near_distance = 2.0
+dof_blur_near_transition = 1.0
+dof_blur_near_amount = 0.1
+dof_blur_near_quality = 1
+glow_enabled = false
+glow_levels/1 = false
+glow_levels/2 = false
+glow_levels/3 = true
+glow_levels/4 = false
+glow_levels/5 = true
+glow_levels/6 = false
+glow_levels/7 = false
+glow_intensity = 0.2
+glow_strength = 1.0
+glow_bloom = 0.0
+glow_blend_mode = 1
+glow_hdr_threshold = 1.0
+glow_hdr_scale = 2.0
+glow_bicubic_upscale = true
+adjustment_enabled = false
+adjustment_brightness = 1.0
+adjustment_contrast = 1.0
+adjustment_saturation = 1.0
+_sections_unfolded = [ "Adjustments", "Ambient Light", "Auto Exposure", "Background", "DOF Far Blur", "DOF Near Blur", "Fog", "Glow", "Resource", "SS Reflections", "SSAO", "Tonemap", "background_sky", "levels" ]
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends Spatial
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here.
+	pass
+
+func _process(delta):
+#	rotate_y(delta/100.0)
+	pass
+	
+func _unhandled_input(event):
+	if event.is_action(\"wheel_up\"):
+		rotate_y(0.1)
+	if event.is_action(\"wheel_down\"):
+		rotate_y(-0.1)
+"
+
+[sub_resource type="SphereMesh" id=4]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+flip_faces = false
+radius = 10.0
+height = 20.0
+radial_segments = 100
+rings = 100
+is_hemisphere = false
+
+[sub_resource type="SpatialMaterial" id=5]
+
+render_priority = 0
+flags_transparent = false
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+flags_do_not_receive_shadows = false
+flags_skip_forward_rendering = false
+vertex_color_use_as_albedo = false
+vertex_color_is_srgb = false
+params_diffuse_mode = 0
+params_specular_mode = 0
+params_blend_mode = 0
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 1, 1, 1, 1 )
+albedo_texture = ExtResource( 2 )
+metallic = 0.0
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.8
+roughness_texture_channel = 0
+emission_enabled = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = false
+refraction_enabled = false
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+atmosphere_enabled = true
+atmosphere_background = false
+_sections_unfolded = [ "Atmosphere", "Flags" ]
+
+[sub_resource type="SphereMesh" id=6]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+flip_faces = true
+radius = 11.5
+height = 23.0
+radial_segments = 64
+rings = 32
+is_hemisphere = false
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="SpatialMaterial" id=7]
+
+render_priority = 0
+flags_transparent = false
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+flags_do_not_receive_shadows = false
+flags_skip_forward_rendering = true
+vertex_color_use_as_albedo = false
+vertex_color_is_srgb = false
+params_diffuse_mode = 1
+params_specular_mode = 4
+params_blend_mode = 1
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 0, 0, 0, 1 )
+metallic = 0.0
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.0
+roughness_texture_channel = 0
+emission_enabled = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = false
+refraction_enabled = false
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+atmosphere_enabled = true
+atmosphere_background = true
+_sections_unfolded = [ "Albedo", "Ambient Occlusion", "Anisotropy", "Atmosphere", "Clearcoat", "Depth", "Detail", "Emission", "Flags", "Metallic", "NormalMap", "Parameters", "Refraction", "Resource", "Rim", "Roughness", "Subsurf Scatter", "Transmission", "Vertex Color" ]
+
+[sub_resource type="CubeMesh" id=8]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+flip_faces = false
+size = Vector3( 2, 2, 2 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[sub_resource type="SpatialMaterial" id=9]
+
+render_priority = 0
+flags_transparent = false
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+flags_do_not_receive_shadows = false
+flags_skip_forward_rendering = false
+vertex_color_use_as_albedo = false
+vertex_color_is_srgb = false
+params_diffuse_mode = 0
+params_specular_mode = 0
+params_blend_mode = 0
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 1, 1, 1, 1 )
+metallic = 0.99
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.5
+roughness_texture_channel = 0
+emission_enabled = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = false
+refraction_enabled = false
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+atmosphere_enabled = true
+atmosphere_background = false
+_sections_unfolded = [ "Albedo", "Ambient Occlusion", "Anisotropy", "Atmosphere", "Clearcoat", "Depth", "Detail", "Distance Fade", "Emission", "Flags", "Metallic", "NormalMap", "Parameters", "Proximity Fade", "Refraction", "Resource", "Rim", "Roughness", "Subsurf Scatter", "Transmission", "UV1", "UV2", "Vertex Color" ]
+
+[sub_resource type="SphereMesh" id=10]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+flip_faces = false
+radius = 8.0
+height = 16.0
+radial_segments = 100
+rings = 100
+is_hemisphere = false
+
+[sub_resource type="SpatialMaterial" id=11]
+
+render_priority = 0
+flags_transparent = false
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+flags_do_not_receive_shadows = false
+flags_skip_forward_rendering = false
+vertex_color_use_as_albedo = false
+vertex_color_is_srgb = false
+params_diffuse_mode = 0
+params_specular_mode = 0
+params_blend_mode = 0
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 1, 1, 1, 1 )
+albedo_texture = ExtResource( 3 )
+metallic = 0.0
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.8
+roughness_texture_channel = 0
+emission_enabled = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = false
+refraction_enabled = false
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+atmosphere_enabled = true
+atmosphere_background = false
+_sections_unfolded = [ "Albedo", "Atmosphere", "Roughness" ]
+
+[sub_resource type="SphereMesh" id=12]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+flip_faces = true
+radius = 9.0
+height = 18.0
+radial_segments = 64
+rings = 32
+is_hemisphere = false
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="SpatialMaterial" id=13]
+
+render_priority = 0
+flags_transparent = false
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+flags_do_not_receive_shadows = false
+flags_skip_forward_rendering = true
+vertex_color_use_as_albedo = false
+vertex_color_is_srgb = false
+params_diffuse_mode = 1
+params_specular_mode = 4
+params_blend_mode = 1
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 0, 0, 0, 1 )
+metallic = 0.0
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.0
+roughness_texture_channel = 0
+emission_enabled = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = false
+refraction_enabled = false
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+atmosphere_enabled = true
+atmosphere_background = true
+_sections_unfolded = [ "Albedo", "Atmosphere", "Flags", "NormalMap", "Parameters" ]
+
+[sub_resource type="PrismMesh" id=14]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+flip_faces = false
+left_to_right = 0.5
+size = Vector3( 2, 2, 2 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[sub_resource type="SpatialMaterial" id=15]
+
+render_priority = 0
+flags_transparent = false
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+flags_do_not_receive_shadows = false
+flags_skip_forward_rendering = false
+vertex_color_use_as_albedo = false
+vertex_color_is_srgb = false
+params_diffuse_mode = 0
+params_specular_mode = 0
+params_blend_mode = 0
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 0.339844, 0.227811, 0.155319, 1 )
+metallic = 0.1
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.9
+roughness_texture_channel = 0
+emission_enabled = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = false
+refraction_enabled = false
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+atmosphere_enabled = true
+atmosphere_background = false
+_sections_unfolded = [ "Albedo", "Atmosphere", "Flags", "Metallic", "Roughness" ]
+
+[sub_resource type="CylinderMesh" id=16]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+flip_faces = false
+top_radius = 0.5
+bottom_radius = 0.5
+height = 15.0
+radial_segments = 64
+rings = 4
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="SpatialMaterial" id=17]
+
+render_priority = 0
+flags_transparent = false
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+flags_do_not_receive_shadows = false
+flags_skip_forward_rendering = false
+vertex_color_use_as_albedo = false
+vertex_color_is_srgb = false
+params_diffuse_mode = 0
+params_specular_mode = 0
+params_blend_mode = 0
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 1, 1, 1, 1 )
+metallic = 0.99
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.5
+roughness_texture_channel = 0
+emission_enabled = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = false
+refraction_enabled = false
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+atmosphere_enabled = true
+atmosphere_background = false
+_sections_unfolded = [ "Albedo", "Ambient Occlusion", "Anisotropy", "Atmosphere", "Clearcoat", "Depth", "Detail", "Distance Fade", "Emission", "Flags", "Metallic", "NormalMap", "Parameters", "Proximity Fade", "Refraction", "Resource", "Rim", "Roughness", "Subsurf Scatter", "Transmission", "UV1", "UV2", "Vertex Color" ]
+
+[node name="Spatial" type="Spatial" index="0"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource( 2 )
+_sections_unfolded = [ "Pause", "environment" ]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
+layers = 1
+light_color = Color( 1, 1, 1, 1 )
+light_energy = 1.0
+light_indirect_energy = 1.0
+light_negative = false
+light_specular = 0.5
+light_bake_mode = 1
+light_cull_mask = -1
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_bias = -0.04
+shadow_contact = 0.0
+shadow_reverse_cull_face = true
+editor_only = false
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.05
+directional_shadow_split_2 = 0.2
+directional_shadow_split_3 = 0.5
+directional_shadow_blend_splits = false
+directional_shadow_normal_bias = 0.01
+directional_shadow_bias_split_scale = 0.0
+directional_shadow_depth_range = 0
+directional_shadow_max_distance = 75.0
+_sections_unfolded = [ "Directional Shadow", "Editor", "Light", "Shadow" ]
+
+[node name="Spatial" type="Spatial" parent="." index="2"]
+script = SubResource( 3 )
+
+[node name="Earth" type="MeshInstance" parent="Spatial" index="0"]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -20, 0, 0 )
+layers = 513
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 4 )
+skeleton = NodePath("..")
+material/0 = SubResource( 5 )
+_sections_unfolded = [ "Geometry", "Material", "Transform", "Visibility", "material/0", "material_override", "mesh" ]
+
+[node name="Atmosphere" type="Atmosphere" parent="Spatial/Earth" index="0"]
+layers = 1
+inner_radius = 9.6
+outer_radius = 11.5
+ph_ray = 0.15
+ph_mie = 0.1
+k_ray = Vector3( 3.8, 13.5, 33.1 )
+k_mie = Vector3( 21, 21, 21 )
+k_mie_ex = 1.1
+intensity = 4.0
+num_out_scatter = 4
+num_in_scatter = 32
+
+[node name="Background" type="MeshInstance" parent="Spatial/Earth/Atmosphere" index="0"]
+layers = 1
+material_override = null
+cast_shadow = 0
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 6 )
+skeleton = NodePath("..")
+material/0 = SubResource( 7 )
+_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0", "material_override" ]
+
+[node name="Cube" type="MeshInstance" parent="Spatial/Earth" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 6.5, -7 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 8 )
+skeleton = NodePath("..")
+material/0 = SubResource( 9 )
+_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0" ]
+
+[node name="Cube2" type="MeshInstance" parent="Spatial/Earth" index="2"]
+transform = Transform( 0.186167, 0.012696, 0.071978, -0.00723011, 0.199192, -0.0164348, -0.0727306, 0.012696, 0.185874, -9.20683, 5.97256, -0.558346 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 8 )
+skeleton = NodePath("..")
+material/0 = SubResource( 9 )
+_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0" ]
+
+[node name="Cube3" type="MeshInstance" parent="Spatial/Earth" index="3"]
+transform = Transform( 0.0558228, -0.0175245, 0.0810969, -0.00488437, 0.0968802, 0.0242974, -0.0828249, -0.0175245, 0.0532253, -8.22891, 6.33577, -1.21585 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 8 )
+skeleton = NodePath("..")
+material/0 = SubResource( 9 )
+_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0" ]
+
+[node name="Cube4" type="MeshInstance" parent="Spatial/Earth" index="4"]
+transform = Transform( 0.0566984, 0.029935, 0.076741, 0.00834338, 0.0905968, -0.0415042, -0.0819492, 0.029935, 0.0488694, -8.1702, 6.61212, -0.422449 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 8 )
+skeleton = NodePath("..")
+material/0 = SubResource( 9 )
+_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0" ]
+
+[node name="Mars" type="MeshInstance" parent="Spatial" index="1"]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 20, 0, 0 )
+layers = 513
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 10 )
+skeleton = NodePath("..")
+material/0 = SubResource( 11 )
+_sections_unfolded = [ "Geometry", "Material", "Transform", "material/0", "material_override", "mesh" ]
+
+[node name="Atmosphere" type="Atmosphere" parent="Spatial/Mars" index="0"]
+layers = 1
+inner_radius = 7.85
+outer_radius = 9.0
+ph_ray = 0.06
+ph_mie = 0.03
+k_ray = Vector3( 19.918, 13.57, 5 )
+k_mie = Vector3( 21, 21, 21 )
+k_mie_ex = 4.4
+intensity = 4.0
+num_out_scatter = 4
+num_in_scatter = 32
+_sections_unfolded = [ "Transform" ]
+
+[node name="Background" type="MeshInstance" parent="Spatial/Mars/Atmosphere" index="0"]
+layers = 1
+material_override = null
+cast_shadow = 0
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 12 )
+skeleton = NodePath("..")
+material/0 = SubResource( 13 )
+_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0", "material_override", "mesh" ]
+
+[node name="Prism" type="MeshInstance" parent="Spatial/Mars" index="1"]
+transform = Transform( -0.755705, -0.633641, -0.165558, -0.60355, 0.575681, 0.551651, -0.254241, 0.516807, -0.817479, -3.70488, 4.71658, 4.06412 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 14 )
+skeleton = NodePath("..")
+material/0 = SubResource( 15 )
+_sections_unfolded = [ "Material", "material/0", "mesh" ]
+
+[node name="Cube7" type="MeshInstance" parent="Spatial/Mars" index="2"]
+transform = Transform( 0.163718, 0.0812588, 0.0812004, -0.0757848, 0.182642, -0.029975, -0.0863318, -0.00623157, 0.1803, 5.9907, 4.96299, 3.51276 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 8 )
+skeleton = NodePath("..")
+material/0 = SubResource( 9 )
+_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0" ]
+
+[node name="Cube6" type="MeshInstance" parent="Spatial/Mars" index="3"]
+transform = Transform( 0.0928356, -0.00417442, 0.0369343, -0.0155454, 0.0858988, 0.0487826, -0.0337625, -0.0510291, 0.0790957, 6.21182, 5.32824, 2.53078 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 8 )
+skeleton = NodePath("..")
+material/0 = SubResource( 9 )
+_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0" ]
+
+[node name="Cube5" type="MeshInstance" parent="Spatial/Mars" index="4"]
+transform = Transform( 0.0863689, 0.00823834, 0.0497248, 0.00495312, 0.0967903, -0.0246394, -0.0501587, 0.0237437, 0.0831887, 6.95525, 5.23494, 3.57658 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 8 )
+skeleton = NodePath("..")
+material/0 = SubResource( 9 )
+_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0" ]
+
+[node name="RodEarth" type="MeshInstance" parent="Spatial" index="2"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -7.5, 0, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 16 )
+skeleton = NodePath("..")
+material/0 = SubResource( 17 )
+_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0", "mesh" ]
+
+[node name="RodMars" type="MeshInstance" parent="Spatial" index="3"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 7.5, 0, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 16 )
+skeleton = NodePath("..")
+material/0 = SubResource( 17 )
+_sections_unfolded = [ "Geometry", "Material", "Transform", "material/0", "mesh" ]
+
+[node name="Camera" type="Camera" parent="Spatial" index="4"]
+transform = Transform( -0.999867, 0.00690188, -0.0147962, 0.00745495, 0.999263, -0.0376559, 0.0145253, -0.0377611, -0.999182, -19.2126, 9.89432, 1.82648 )
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = false
+fov = 90.0
+size = 1.0
+near = 0.05
+far = 75.0
+script = ExtResource( 4 )
+moveForwardAction = "mov_forward"
+moveBackwardAction = "mov_backward"
+moveLeftAction = "mov_left"
+moveRightAction = "mov_right"
+moveUpAction = "mov_up"
+moveDownAction = "mov_down"
+moveFasterAction = "mov_faster"
+mouseLookToggleAction = "look_mouseToggle"
+mouseLookAction = "look_mouse"
+rollLeftAction = "look_roll_left"
+rollRightAction = "look_roll_right"
+lookModeAction = "look_mode"
+toggleUiAction = "ui_cancel"
+mouseSensitivity = 1.0
+movementSpeed = 1.0
+movementSpeedFast = 10.0
+rollSpeed = 1.0
+uiNodePath = NodePath("")
+
