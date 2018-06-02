@@ -19,9 +19,9 @@ background_sky_custom_fov = 0.0
 background_color = Color( 0, 0, 0, 1 )
 background_energy = 0.01
 background_canvas_max_layer = 0
-ambient_light_color = Color( 0, 0, 0, 1 )
-ambient_light_energy = 1.0
-ambient_light_sky_contribution = 1.0
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.001
+ambient_light_sky_contribution = 0.0
 fog_enabled = false
 fog_color = Color( 0.5, 0.6, 0.7, 1 )
 fog_sun_color = Color( 1, 0.9, 0.7, 1 )
@@ -56,6 +56,7 @@ ssao_radius2 = 0.0
 ssao_intensity2 = 1.0
 ssao_bias = 0.01
 ssao_light_affect = 0.0
+ssao_ao_channel_affect = 0.0
 ssao_color = Color( 0, 0, 0, 1 )
 ssao_quality = 0
 ssao_blur = 3
@@ -105,7 +106,7 @@ func _ready():
 	pass
 
 func _process(delta):
-#	rotate_y(delta/100.0)
+	rotate_y(delta/1000.0)
 	pass
 	
 func _unhandled_input(event):
@@ -137,7 +138,8 @@ flags_world_triplanar = false
 flags_fixed_size = false
 flags_albedo_tex_force_srgb = false
 flags_do_not_receive_shadows = false
-flags_skip_forward_rendering = false
+flags_no_forward_lighting = false
+flags_ensure_correct_normals = false
 vertex_color_use_as_albedo = false
 vertex_color_is_srgb = false
 params_diffuse_mode = 0
@@ -180,7 +182,7 @@ proximity_fade_enable = false
 distance_fade_enable = false
 atmosphere_enabled = true
 atmosphere_background = false
-_sections_unfolded = [ "Atmosphere", "Flags" ]
+_sections_unfolded = [ "Atmosphere", "Flags", "ao_texture" ]
 
 [sub_resource type="SphereMesh" id=6]
 
@@ -205,14 +207,15 @@ flags_world_triplanar = false
 flags_fixed_size = false
 flags_albedo_tex_force_srgb = false
 flags_do_not_receive_shadows = false
-flags_skip_forward_rendering = true
+flags_no_forward_lighting = true
+flags_ensure_correct_normals = false
 vertex_color_use_as_albedo = false
 vertex_color_is_srgb = false
 params_diffuse_mode = 1
 params_specular_mode = 4
 params_blend_mode = 1
 params_cull_mode = 0
-params_depth_draw_mode = 0
+params_depth_draw_mode = 2
 params_line_width = 1.0
 params_point_size = 1.0
 params_billboard_mode = 0
@@ -270,7 +273,8 @@ flags_world_triplanar = false
 flags_fixed_size = false
 flags_albedo_tex_force_srgb = false
 flags_do_not_receive_shadows = false
-flags_skip_forward_rendering = false
+flags_no_forward_lighting = false
+flags_ensure_correct_normals = false
 vertex_color_use_as_albedo = false
 vertex_color_is_srgb = false
 params_diffuse_mode = 0
@@ -284,7 +288,7 @@ params_billboard_mode = 0
 params_grow = false
 params_use_alpha_scissor = false
 albedo_color = Color( 1, 1, 1, 1 )
-metallic = 0.99
+metallic = 0.94
 metallic_specular = 0.5
 metallic_texture_channel = 0
 roughness = 0.5
@@ -314,7 +318,7 @@ atmosphere_enabled = true
 atmosphere_background = false
 _sections_unfolded = [ "Albedo", "Ambient Occlusion", "Anisotropy", "Atmosphere", "Clearcoat", "Depth", "Detail", "Distance Fade", "Emission", "Flags", "Metallic", "NormalMap", "Parameters", "Proximity Fade", "Refraction", "Resource", "Rim", "Roughness", "Subsurf Scatter", "Transmission", "UV1", "UV2", "Vertex Color" ]
 
-[sub_resource type="SphereMesh" id=10]
+[sub_resource type="SphereMesh" id=12]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 flip_faces = false
@@ -324,7 +328,7 @@ radial_segments = 100
 rings = 100
 is_hemisphere = false
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=13]
 
 render_priority = 0
 flags_transparent = false
@@ -336,7 +340,8 @@ flags_world_triplanar = false
 flags_fixed_size = false
 flags_albedo_tex_force_srgb = false
 flags_do_not_receive_shadows = false
-flags_skip_forward_rendering = false
+flags_no_forward_lighting = false
+flags_ensure_correct_normals = false
 vertex_color_use_as_albedo = false
 vertex_color_is_srgb = false
 params_diffuse_mode = 0
@@ -381,18 +386,18 @@ atmosphere_enabled = true
 atmosphere_background = false
 _sections_unfolded = [ "Albedo", "Atmosphere", "Roughness" ]
 
-[sub_resource type="SphereMesh" id=12]
+[sub_resource type="SphereMesh" id=14]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 flip_faces = true
 radius = 9.0
 height = 18.0
-radial_segments = 64
-rings = 32
+radial_segments = 100
+rings = 100
 is_hemisphere = false
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="SpatialMaterial" id=13]
+[sub_resource type="SpatialMaterial" id=15]
 
 render_priority = 0
 flags_transparent = false
@@ -404,7 +409,8 @@ flags_world_triplanar = false
 flags_fixed_size = false
 flags_albedo_tex_force_srgb = false
 flags_do_not_receive_shadows = false
-flags_skip_forward_rendering = true
+flags_no_forward_lighting = true
+flags_ensure_correct_normals = false
 vertex_color_use_as_albedo = false
 vertex_color_is_srgb = false
 params_diffuse_mode = 1
@@ -448,7 +454,7 @@ atmosphere_enabled = true
 atmosphere_background = true
 _sections_unfolded = [ "Albedo", "Atmosphere", "Flags", "NormalMap", "Parameters" ]
 
-[sub_resource type="PrismMesh" id=14]
+[sub_resource type="PrismMesh" id=16]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 flip_faces = false
@@ -458,7 +464,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="SpatialMaterial" id=15]
+[sub_resource type="SpatialMaterial" id=17]
 
 render_priority = 0
 flags_transparent = false
@@ -470,7 +476,8 @@ flags_world_triplanar = false
 flags_fixed_size = false
 flags_albedo_tex_force_srgb = false
 flags_do_not_receive_shadows = false
-flags_skip_forward_rendering = false
+flags_no_forward_lighting = false
+flags_ensure_correct_normals = false
 vertex_color_use_as_albedo = false
 vertex_color_is_srgb = false
 params_diffuse_mode = 0
@@ -514,7 +521,7 @@ atmosphere_enabled = true
 atmosphere_background = false
 _sections_unfolded = [ "Albedo", "Atmosphere", "Flags", "Metallic", "Roughness" ]
 
-[sub_resource type="CylinderMesh" id=16]
+[sub_resource type="CylinderMesh" id=18]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 flip_faces = false
@@ -522,10 +529,10 @@ top_radius = 0.5
 bottom_radius = 0.5
 height = 15.0
 radial_segments = 64
-rings = 4
+rings = 16
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="SpatialMaterial" id=17]
+[sub_resource type="SpatialMaterial" id=19]
 
 render_priority = 0
 flags_transparent = false
@@ -537,7 +544,8 @@ flags_world_triplanar = false
 flags_fixed_size = false
 flags_albedo_tex_force_srgb = false
 flags_do_not_receive_shadows = false
-flags_skip_forward_rendering = false
+flags_no_forward_lighting = false
+flags_ensure_correct_normals = false
 vertex_color_use_as_albedo = false
 vertex_color_is_srgb = false
 params_diffuse_mode = 0
@@ -599,7 +607,7 @@ light_bake_mode = 1
 light_cull_mask = -1
 shadow_enabled = true
 shadow_color = Color( 0, 0, 0, 1 )
-shadow_bias = -0.04
+shadow_bias = 0.025
 shadow_contact = 0.0
 shadow_reverse_cull_face = true
 editor_only = false
@@ -608,7 +616,7 @@ directional_shadow_split_1 = 0.05
 directional_shadow_split_2 = 0.2
 directional_shadow_split_3 = 0.5
 directional_shadow_blend_splits = false
-directional_shadow_normal_bias = 0.01
+directional_shadow_normal_bias = 0.0
 directional_shadow_bias_split_scale = 0.0
 directional_shadow_depth_range = 0
 directional_shadow_max_distance = 75.0
@@ -635,16 +643,23 @@ _sections_unfolded = [ "Geometry", "Material", "Transform", "Visibility", "mater
 
 [node name="Atmosphere" type="Atmosphere" parent="Spatial/Earth" index="0"]
 layers = 1
+num_out_scatter = 8
+num_in_scatter = 64
 inner_radius = 9.6
+surface_radius = 10.0
+surface_margin = 0.1
 outer_radius = 11.5
 ph_ray = 0.15
 ph_mie = 0.1
 k_ray = Vector3( 3.8, 13.5, 33.1 )
 k_mie = Vector3( 21, 21, 21 )
 k_mie_ex = 1.1
+g_mie = -0.78
 intensity = 4.0
-num_out_scatter = 4
-num_in_scatter = 32
+direct_irradiance_attenuation = 1.0
+indirect_irradiance_intensity = 1.0
+enable_shadows = true
+shadow_bias = -0.075
 
 [node name="Background" type="MeshInstance" parent="Spatial/Earth/Atmosphere" index="0"]
 layers = 1
@@ -659,7 +674,7 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 6 )
 skeleton = NodePath("..")
 material/0 = SubResource( 7 )
-_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0", "material_override" ]
+_sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0", "material_override", "mesh" ]
 
 [node name="Cube" type="MeshInstance" parent="Spatial/Earth" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 6.5, -7 )
@@ -736,23 +751,30 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 10 )
+mesh = SubResource( 12 )
 skeleton = NodePath("..")
-material/0 = SubResource( 11 )
+material/0 = SubResource( 13 )
 _sections_unfolded = [ "Geometry", "Material", "Transform", "material/0", "material_override", "mesh" ]
 
 [node name="Atmosphere" type="Atmosphere" parent="Spatial/Mars" index="0"]
 layers = 1
+num_out_scatter = 8
+num_in_scatter = 32
 inner_radius = 7.85
+surface_radius = 8.0
+surface_margin = 0.001
 outer_radius = 9.0
 ph_ray = 0.06
-ph_mie = 0.03
+ph_mie = 0.05
 k_ray = Vector3( 19.918, 13.57, 5 )
-k_mie = Vector3( 21, 21, 21 )
-k_mie_ex = 4.4
-intensity = 4.0
-num_out_scatter = 4
-num_in_scatter = 32
+k_mie = Vector3( 11, 11, 11 )
+k_mie_ex = 1.0
+g_mie = -0.78
+intensity = 2.0
+direct_irradiance_attenuation = 1.0
+indirect_irradiance_intensity = 1.0
+enable_shadows = true
+shadow_bias = -0.075
 _sections_unfolded = [ "Transform" ]
 
 [node name="Background" type="MeshInstance" parent="Spatial/Mars/Atmosphere" index="0"]
@@ -765,9 +787,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 12 )
+mesh = SubResource( 14 )
 skeleton = NodePath("..")
-material/0 = SubResource( 13 )
+material/0 = SubResource( 15 )
 _sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0", "material_override", "mesh" ]
 
 [node name="Prism" type="MeshInstance" parent="Spatial/Mars" index="1"]
@@ -781,9 +803,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 14 )
+mesh = SubResource( 16 )
 skeleton = NodePath("..")
-material/0 = SubResource( 15 )
+material/0 = SubResource( 17 )
 _sections_unfolded = [ "Material", "material/0", "mesh" ]
 
 [node name="Cube7" type="MeshInstance" parent="Spatial/Mars" index="2"]
@@ -845,9 +867,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 16 )
+mesh = SubResource( 18 )
 skeleton = NodePath("..")
-material/0 = SubResource( 17 )
+material/0 = SubResource( 19 )
 _sections_unfolded = [ "Geometry", "Lod", "Material", "Pause", "Transform", "Visibility", "material/0", "mesh" ]
 
 [node name="RodMars" type="MeshInstance" parent="Spatial" index="3"]
@@ -861,9 +883,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 16 )
+mesh = SubResource( 18 )
 skeleton = NodePath("..")
-material/0 = SubResource( 17 )
+material/0 = SubResource( 19 )
 _sections_unfolded = [ "Geometry", "Material", "Transform", "material/0", "mesh" ]
 
 [node name="Camera" type="Camera" parent="Spatial" index="4"]

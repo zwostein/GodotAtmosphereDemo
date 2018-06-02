@@ -4,7 +4,7 @@ A demo for showcasing Atmospheric Scattering in [Godot](https://github.com/godot
 
 ## Prerequisites
 
-Checkout the "atmosphere" branch from [Godot](https://github.com/zwostein/godot/).
+Checkout the "atmosphere" branch from [Godot](https://github.com/zwostein/godot/tree/atmosphere).
 
 ## Credits
 

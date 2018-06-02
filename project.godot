@@ -14,6 +14,17 @@ config/name="AtmosphereDemo"
 run/main_scene="res://Demo.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+settings/stdout/print_fps=true
+settings/stdout/verbose_stdout=true
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/vsync/use_vsync=false
+
 [input]
 
 ui_accept={
@@ -160,3 +171,13 @@ wheel_down={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[rendering]
+
+quality/shadows/filter_mode=0
+quality/atmosphere/ray_mie_height_resolution=256
+quality/atmosphere/ray_mie_angle_resolution=256
+quality/atmosphere/irradiance_height_resolution=256
+quality/atmosphere/irradiance_angle_resolution=256
+quality/atmosphere/irradiance_samples=32
+quality/filters/msaa=3
